@@ -60,6 +60,22 @@ function clearItems(e) {
   checkUI();
 }
 
+
+function filterItems (e) {
+  const items = itemList.querySelectorAll('li');
+  const text = e.target.value.toLowerCase();
+
+  items.forEach(item => { 
+    const itemName = item.firstChild.textContent.toLowerCase();
+
+    if (itemName.indexOf(text) != -1) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
 // this function will check if there is any items listed then it will show the filter textfield and clearall button and list is empty then those two will not show up after loading the page.
 function checkUI() {
   const items = itemList.querySelectorAll('li');
@@ -75,5 +91,6 @@ function checkUI() {
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', clearItems);
+filterInput.addEventListener('input', filterItems);
 
 checkUI();
